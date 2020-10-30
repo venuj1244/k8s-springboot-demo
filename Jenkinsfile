@@ -6,7 +6,13 @@ pipeline {
   stages {
     stage('checkout')
     {
-    git 'https://github.com/venuj1244/k8s-springboot-demo'
+          steps{
+    script{
+          git 'https://github.com/venuj1244/k8s-springboot-demo'
+        
+    }
+
+    }
    }
     stage('Build And Compile') {
       steps{
