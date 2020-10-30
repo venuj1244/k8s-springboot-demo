@@ -4,12 +4,16 @@ pipeline {
   }
   agent any
   stages {
-    stage('Build') {
+    stage('checkout')
+    {
+    git 'https://github.com/venuj1244/k8s-springboot-demo'
+   }
+    stage('Build And Compile') {
       steps{
         script {
-         // 
-          sh 'mvn clean install'
-        }
+            def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+            sh "${mvnHome}/bin/mvn clean install"                
+            }
       }
     }
     stage('Load') {
