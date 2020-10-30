@@ -8,7 +8,6 @@ pipeline {
       steps{
         script {
          // 
-          git 'https://github.com/venuj1244/k8s-springboot-demo.git'
           sh 'mvn clean install'
         }
       }
