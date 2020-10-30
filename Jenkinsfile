@@ -4,21 +4,23 @@ pipeline {
   }
   agent any
   stages {
-    stage(‘Build’) {
+    stage('Build') {
       steps{
         script {
+         // 
+          git 'https://github.com/venuj1244/k8s-springboot-demo.git'
           sh 'mvn clean install'
         }
       }
     }
-    stage(‘Load’) {
+    stage('Load') {
       steps{
         script {
           app = docker.build("venucareer2019/springbootdemo")
         }
       }
     }
-     stage(‘Deploy’) {
+     stage('Deploy') {
       steps{
         script {
           docker.withRegistry( "https://registry.hub.docker.com", registryCredential ) {
