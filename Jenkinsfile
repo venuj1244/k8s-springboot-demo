@@ -17,25 +17,8 @@ pipeline {
       steps{
         script {
             def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-            sh "${mvnHome}/bin/mvn clean install"                
+            sh "${mvnHome}/bin/mvn package"                
             }
-      }
-    }
-    stage('Load') {
-      steps{
-        script {
-          app = docker.build("venucareer2019/springbootdemo")
-        }
-      }
-    }
-     stage('Deploy') {
-      steps{
-        script {
-          docker.withRegistry( "https://registry.hub.docker.com", registryCredential ) {
-           // dockerImage.push()
-          app.push("latest")
-          }
-        }
       }
     }
   }
