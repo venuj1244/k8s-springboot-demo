@@ -1,7 +1,6 @@
 pipeline {
   environment {
     registryCredential = "docker"
-    mvnHome="C:/maven/maven-new-3.6.3"
   }
   agent any
   stages {
@@ -17,6 +16,7 @@ pipeline {
    stage('Build And Compile') {
       steps{
         script {
+            def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
             sh "${mvnHome}/bin/mvn package"                
             }
       }
