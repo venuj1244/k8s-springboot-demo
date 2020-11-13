@@ -1,8 +1,8 @@
 pipeline {
-  environment {
-    registryCredential = "docker"
-  }
   agent any
+  tools {
+    maven 'M3'
+  }
   stages {
     stage('checkout')
     {
@@ -13,14 +13,12 @@ pipeline {
 
     }
    }
-  stage('Build') {
-        def mvn_version = 'M3'
-        withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
-        sh '''for f in i7j-*; do
-                (cd $f && mvn clean package -Dmaven.test.skip=true -Dadditionalparam=-Xdoclint:none  | tee ../jel-mvn-$f.log) &
-              done
-              wait'''
+   stage('Build') {
+      steps {
+       script{
+        sh 'mvn -B -DskipTests clean package'
         }
-   }
+      }
+    }
   }
 }
