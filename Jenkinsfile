@@ -13,9 +13,9 @@ pipeline {
    }
         stage('Build') {
             steps {
-                sh 'printenv'
+                bat 'printenv'
                 withMaven(mavenSettingsConfig: 'maven-settings-global') {
-                    sh 'mvn clean package'
+                    bat 'mvn clean package'
                 }
             }
         }     
