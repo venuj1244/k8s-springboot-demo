@@ -13,9 +13,7 @@ pipeline {
    }
         stage('Build') {
             steps {
-                withMaven(mavenSettingsConfig: 'maven-settings-global') {
                     bat 'mvn clean package'
-                }
             }
         }     
     }    
