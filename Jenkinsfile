@@ -13,7 +13,6 @@ pipeline {
    }
         stage('Build') {
             steps {
-                bat 'printenv'
                 withMaven(mavenSettingsConfig: 'maven-settings-global') {
                     bat 'mvn clean package'
                 }
