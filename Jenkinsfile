@@ -7,7 +7,6 @@ pipeline {
     tools {
         maven 'M3'
         jdk 'jdk8'
-        docker 'docker'
     }
     stages {
     stage('checkout')
