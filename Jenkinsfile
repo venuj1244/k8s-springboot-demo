@@ -30,11 +30,10 @@ pipeline {
    stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
+          withDockerRegistry(credentialsId: 'dockerhub_id', toolName: 'docker', url: 'https://hub.docker.com/') {
+      dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
-
-          }
+       }
         }
       }
     }
