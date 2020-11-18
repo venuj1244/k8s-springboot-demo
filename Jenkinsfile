@@ -37,5 +37,12 @@ pipeline {
         }
       }
     }
+    stage('Docker Image') {
+      steps{
+        script {
+          dockerImage.run("-p 8081:5000 --rm --name springbootdemocontainer")
+        }
+      }
+    }
 }    
 }
