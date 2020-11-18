@@ -8,11 +8,7 @@ pipeline {
         maven 'M3'
         jdk 'jdk8'
     }
-    docker {
-      label 'windows'
-      image 'mcr.microsoft.com/powershell'
-    }
-    stages {
+   stages {
     stage('checkout')
     {
           steps{
@@ -34,7 +30,7 @@ pipeline {
    stage('Deploy Image') {
       steps{
         script {
-          withDockerRegistry(credentialsId: 'dockerhub_id', toolName: 'docker', url: 'https://hub.docker.com/') {
+          withDockerRegistry(credentialsId: 'dockerhub_id', toolName: 'docker', url: 'https://registry.hub.docker.com') {
              dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
        }
