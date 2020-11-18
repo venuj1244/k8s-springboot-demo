@@ -1,4 +1,4 @@
 FROM  openjdk:8
-EXPOSE 8081
+EXPOSE 5000
 ADD target/springbootdemo.jar springbootdemo.jar
 ENTRYPOINT ["java","-jar","/springbootdemo.jar"]
