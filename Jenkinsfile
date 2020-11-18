@@ -3,6 +3,7 @@ pipeline {
     environment {
     registry = "venucareer2019/springbootdemo"
     registryCredential = 'dockerhub_id'
+    dockerImage=''
     }
     tools {
         maven 'M3'
@@ -23,16 +24,15 @@ pipeline {
         stage('Building image') {
       steps{
         script {
-          docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry
         }
       }
     } 
    stage('Deploy Image') {
       steps{
         script {
-          withDockerRegistry(credentialsId: 'dockerhub_id', toolName: 'docker', url: 'https://registry.hub.docker.com') {
-             dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
+          withDockerRegistry('',registryCredential) {
+             dockerImage.push()
        }
         }
       }
