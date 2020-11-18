@@ -8,6 +8,10 @@ pipeline {
         maven 'M3'
         jdk 'jdk8'
     }
+    docker {
+      label 'windows'
+      image 'mcr.microsoft.com/powershell'
+    }
     stages {
     stage('checkout')
     {
@@ -31,7 +35,7 @@ pipeline {
       steps{
         script {
           withDockerRegistry(credentialsId: 'dockerhub_id', toolName: 'docker', url: 'https://hub.docker.com/') {
-      dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
        }
         }
