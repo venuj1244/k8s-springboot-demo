@@ -24,7 +24,7 @@ pipeline {
         stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry
+          bat 'docker build -t venucareer2019/k8sspringbootdemo:latest .'
         }
       }
     } 
@@ -32,15 +32,8 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             dockerImage.push()
+             bat 'docker push venucareer2019/k8sspringbootdemo:latest'
        }
-        }
-      }
-    }
-    stage('Run Docker Image') {
-      steps{
-        script {
-          dockerImage.run("-p 6000:6000")
         }
       }
     }
