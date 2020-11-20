@@ -40,7 +40,7 @@ pipeline {
     stage('Run Docker Image') {
       steps{
         script {
-          dockerImage.run("-p 5000:8080 --rm --name springbootdemocontainer1234")
+          dockerImage.run("-p 5000:5000 --rm --name springbootdemocontainer12345")
         }
       }
     }
