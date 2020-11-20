@@ -40,7 +40,7 @@ pipeline {
     stage('Run Docker Image') {
       steps{
         script {
-          dockerImage.run("-p 5000:5000")
+          dockerImage.run("-p 6000:6000")
         }
       }
     }
