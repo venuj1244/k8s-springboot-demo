@@ -37,5 +37,23 @@ pipeline {
         }
       }
     }
+    stage('Clean Image') {
+      steps{
+        script {
+          docker.withRegistry('',registryCredential) {
+             bat 'docker rmi venucareer2019/k8sspringbootdemo:latest'
+       }
+        }
+      }
+    }
+     stage('Run Image') {
+      steps{
+        script {
+          docker.withRegistry('',registryCredential) {
+             bat 'docker run -it -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
+       }
+        }
+      }
+    }
 }    
 }
