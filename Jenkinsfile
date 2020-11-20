@@ -41,7 +41,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             bat 'docker run -it -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
+             bat 'winpty docker run -it -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
