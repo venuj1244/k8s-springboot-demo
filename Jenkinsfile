@@ -41,7 +41,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             sh 'docker run -it -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
+             sh 'docker run -i -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
