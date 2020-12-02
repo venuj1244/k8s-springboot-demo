@@ -18,13 +18,13 @@ pipeline {
    }
         stage('Build') {
             steps {
-                    bat 'mvn clean package'
+                    sh 'mvn clean package'
             }
         } 
         stage('Building image') {
       steps{
         script {
-          bat 'docker build -t venucareer2019/k8sspringbootdemo:latest .'
+          sh 'docker build -t venucareer2019/k8sspringbootdemo:latest .'
         }
       }
     } 
@@ -32,7 +32,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             bat 'docker push venucareer2019/k8sspringbootdemo:latest'
+             sh 'docker push venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
@@ -41,7 +41,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             bat 'winpty docker run -it -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
+             sh 'winpty docker run -it -p 5000:5000 venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
@@ -50,7 +50,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             bat 'docker rmi venucareer2019/k8sspringbootdemo:latest'
+             sh 'docker rmi venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
