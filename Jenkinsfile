@@ -41,7 +41,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
-             sh 'docker run -i -p 10180:10180 venucareer2019/k8sspringbootdemo:latest'
+             sh 'docker run -i -p 8080:8080 venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
