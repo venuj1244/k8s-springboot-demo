@@ -45,7 +45,7 @@ pipeline {
     stage('Deploy to K8S') {
     steps {
         withCredentials([
-            string(credentialsId: 'kubernetes', variable: 'api_token')
+            string(credentialsId: 'Kubernetes', variable: 'api_token')
             ]) {
              sh 'kubectl --token $api_token --server https://192.168.0.14:8443 --insecure-skip-tls-verify=true apply -f deployment.yaml '
                }
