@@ -28,29 +28,11 @@ pipeline {
         }
       }
     } 
-   stage('Deploy Image') {
+   stage('Push Image') {
       steps{
         script {
           docker.withRegistry('',registryCredential) {
              sh 'docker push venucareer2019/k8sspringbootdemo:latest'
-       }
-        }
-      }
-    }
-     stage('Run Image') {
-      steps{
-        script {
-          docker.withRegistry('',registryCredential) {
-             sh 'docker run -i -p 8080:18080 venucareer2019/k8sspringbootdemo:latest'
-       }
-        }
-      }
-    }
-     stage('Clean Image') {
-      steps{
-        script {
-          docker.withRegistry('',registryCredential) {
-             sh 'docker rmi venucareer2019/k8sspringbootdemo:latest'
        }
         }
       }
