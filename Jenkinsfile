@@ -23,17 +23,17 @@ pipeline {
         } 
         stage('Building image') {
       steps{
-        script {
-          sh 'docker build -t venucareer2019/k8sspringbootdemo:latest .'
+       script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     } 
    stage('Push Image') {
       steps{
         script {
-          docker.withRegistry('',registryCredential) {
-             sh 'docker push venucareer2019/k8sspringbootdemo:latest'
-       }
+           docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
         }
       }
     }
