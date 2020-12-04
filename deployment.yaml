@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: #your image name here
+        image: venucareer2019/springbootdemo
         ports:
         - containerPort: 8080
           name: server
