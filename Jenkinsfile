@@ -47,7 +47,7 @@ pipeline {
         withCredentials([
             string(credentialsId: 'Kubernetes', variable: 'api_token')
             ]) {
-             sh 'kubectl --token $api_token --server https://192.168.0.26:8443 --insecure-skip-tls-verify=true apply -f deployment.yaml '
+             sh 'kubectl --token $api_token --server https://192.168.0.33:8443 --insecure-skip-tls-verify=true apply -f deployment.yaml '
                }
             }
            }
